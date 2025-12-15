@@ -13,90 +13,44 @@ const CLASSES = {
   expandDone: "expand-done",
 };
 
-// Utility Functions
-const Utils = {
-  isHidden: (element) =>
-    element.offsetHeight === 0 && element.offsetWidth === 0,
-
-  showAlert: (element, text, duration = 800) => {
-    element.textContent = text;
-    element.style.opacity = 1;
-    element.style.visibility = "visible";
-    setTimeout(() => {
-      element.style.opacity = 0;
-      element.style.visibility = "hidden";
-    }, duration);
-  },
-
-  createElement: (tag, className, innerHTML) => {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    if (innerHTML) element.innerHTML = innerHTML;
-    return element;
-  },
-
-  toggleDisplay: (elements, show) => {
-    elements.forEach((element) => {
-      element.style.display = show ? "flex" : "none";
-    });
-  },
-};
-
-// Copy functionality
-const CopyHandler = {
-  async copy(text, noticeElement) {
-    try {
-      await navigator.clipboard.writeText(text);
-      console.log("Text copied successfully:", text);
-      Utils.showAlert(noticeElement, "Copied");
-    } catch (err) {
-      console.error("Failed to copy:", err);
-      Utils.showAlert(noticeElement, "Copy failed!");
-    }
-  },
+showAlert = (element, text, duration = 800) => {
+  element.textContent = text;
+  element.style.opacity = 1;
+  element.style.visibility = "visible";
+  setTimeout(() => {
+    element.style.opacity = 0;
+    element.style.visibility = "hidden";
+  }, duration);
 };
 
 // Feature Handlers
 const FeatureHandlers = {
-  copy(parentElement, clickElement) {
+  async copy(parentElement, clickElement) {
     const buttonParent = parentElement.parentNode;
     buttonParent.classList.add(CLASSES.copyTrue);
 
     const codeElement = buttonParent.querySelector(SELECTORS.preCode);
-    if (codeElement) {
-      CopyHandler.copy(
-        codeElement.innerText,
-        clickElement.previousElementSibling,
-      );
-    }
+    await navigator.clipboard.writeText(codeElement.innerText);
+    showAlert(clickElement.previousElementSibling, "Copied");
 
     buttonParent.classList.remove(CLASSES.copyTrue);
   },
 
   toggleWrap(element) {
-    const figure = element.closest(SELECTORS.figureHighlight);
-    const pre = figure?.querySelector(SELECTORS.preShiki);
-    const code = pre?.querySelector("code");
+    const code = element
+      .closest(SELECTORS.figureHighlight)
+      .querySelector("code");
 
-    const isWrapped = pre.style.whiteSpace === "pre-wrap";
+    function setWrap(enabled) {
+      Object.assign(code.style, {
+        whiteSpace: enabled ? "pre-wrap" : "pre",
+        wordBreak: enabled ? "break-all" : "normal",
+        overflowWrap: enabled ? "anywhere" : "normal",
+      });
 
-    if (isWrapped) {
-      Object.assign(pre.style, { whiteSpace: "pre" });
-      Object.assign(code.style, {
-        whiteSpace: "pre",
-        wordBreak: "normal",
-        overflowWrap: "normal",
-      });
-      element.classList.remove(CLASSES.wrapActive);
-    } else {
-      Object.assign(pre.style, { whiteSpace: "pre-wrap" });
-      Object.assign(code.style, {
-        whiteSpace: "pre-wrap",
-        wordBreak: "break-all",
-        overflowWrap: "anywhere",
-      });
-      element.classList.add(CLASSES.wrapActive);
+      element.classList.toggle(CLASSES.wrapActive, enabled);
     }
+    setWrap(code.style.whiteSpace !== "pre-wrap");
   },
 
   expandCode(figure) {
@@ -104,7 +58,7 @@ const FeatureHandlers = {
     const pre = figure.querySelector(SELECTORS.preShiki);
 
     const isExpanded = figure.classList.contains("expanded");
-    const showLines = parseInt(figure.dataset.showLines || "10", 10);
+    const showLines = parseInt(figure.dataset.showLines || "10");
 
     if (isExpanded) {
       // 记录折叠前的状态
@@ -158,13 +112,14 @@ const FeatureHandlers = {
       });
     }
   },
-}; // Main toolbar event handler
+};
 
 function handleToolbarClick(event) {
   const target = event.target;
   const classList = target.classList;
 
   const handlers = {
+    expand: () => FeatureHandlers.shrink(this),
     "copy-button": () => FeatureHandlers.copy(this, target),
     "toggle-wrap": () => FeatureHandlers.toggleWrap(this),
   };
@@ -214,7 +169,7 @@ function addHighlightTool() {
     // Initialize collapsed state for collapsible code blocks
     if (figure.dataset.collapsible === "true") {
       const pre = figure.querySelector(SELECTORS.preShiki);
-      const showLines = parseInt(figure.dataset.showLines || "10", 10);
+      const showLines = parseInt(figure.dataset.showLines || "10");
 
       if (pre) {
         // 确保元素已经渲染完成后再设置高度
@@ -228,8 +183,6 @@ function addHighlightTool() {
     }
   });
 } // Event listeners
-document.addEventListener("pjax:success", addHighlightTool);
-window.addEventListener("hexo-blog-decrypt", addHighlightTool);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", addHighlightTool);
