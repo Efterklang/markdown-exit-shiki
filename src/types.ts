@@ -20,10 +20,7 @@ export interface ShikiOptions {
     title?: boolean;
     wrapToggle?: boolean;
     copyButton?: boolean;
-    shrinkButton?: boolean;
   };
-  copy?: { success?: string; error?: string };
-  custom_css?: string;
 }
 
 export type StyleToClassTransformer = ShikiTransformer & {
