@@ -59,7 +59,7 @@ function renderCode(md: MarkdownExit, renderOptions: ShikiOptions) {
     const match = content.match(/^\{(\w+)\}\s+(.+)$/);
     // Case 1: No language specified, e.g. `console.log('Hello')`
     if (match === null) {
-      return `<code${self.renderAttrs(token)}>${content}</code>`;
+      return `<code${self.renderAttrs(token)}>${escapeHtml(content)}</code>`;
     }
     // Case 2: Language specified, e.g. `{js} console.log('Hello')`
     const [, lang, code] = match;

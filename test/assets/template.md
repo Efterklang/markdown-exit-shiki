@@ -8,6 +8,12 @@
   - python: `{python} print("Hello, World!")`
   - css: `{css} body { background-color: #f0f0f0; }`
 
+## Edge Cases
+
+### Escape Characters
+
+`<leader><leader> / <char> ... <CR>`
+
 ## Transformers
 
 ### Diff
