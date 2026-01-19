@@ -85,7 +85,7 @@ export function computeCollapseAttributes(
     ? '<div class="code-expand-btn"><iconify-icon icon="garden:chevron-double-down-fill-16"></iconify-icon></div>'
     : "";
   const collapseAttrs = shouldCollapse
-    ? ` data-collapsible="true" data-max-lines="${cfg.collapseConfig.maxLines}" data-show-lines="${cfg.collapseConfig.showLines}" data-total-lines="${codeLines}"`
+    ? ` data-collapsible="true" data-max-lines="${cfg.collapseConfig.maxLines}" data-total-lines="${codeLines}"`
     : "";
 
   return {

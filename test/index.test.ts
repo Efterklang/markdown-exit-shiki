@@ -15,11 +15,7 @@ describe("Markdown Rendering", () => {
         light: "catppuccin-latte",
         dark: "catppuccin-mocha",
       },
-      code_collapse: {
-        enable: true,
-        max_lines: 10, // Set low to test collapse
-        show_lines: 5,
-      },
+      code_collapse: 10, // Set low to test collapse
     };
 
     // Apply the plugin

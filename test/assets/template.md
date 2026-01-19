@@ -14,6 +14,24 @@
 
 `<leader><leader> / <char> ... <CR>`
 
+### Collapse
+
+```
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+```
+
 ## Transformers
 
 ### Diff
@@ -55,3 +73,18 @@ console.log("No errors or warnings");
 console.error("Error"); // [!code error]
 console.warn("Warning"); // [!code warning]
 ```
+
+### ANSI
+
+```ansi
+[0;32mcolored foreground[0m
+[0;42mcolored background[0m
+
+[0;1mbold text[0m
+[0;2mdimmed text[0m
+[0;4munderlined text[0m
+[0;7mreversed text[0m
+[0;9mstrikethrough text[0m
+[0;4;9munderlined + strikethrough text[0m
+```
+

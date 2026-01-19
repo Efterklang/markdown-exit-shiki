@@ -82,11 +82,9 @@ Supported themes listed at [Shiki Themes](https://shiki.style/themes)
 
 Configuration for collapsible code blocks. When enabled, code blocks that exceed a certain number of lines will be collapsed by default, with an option to expand and view the full code.
 
-| Option       | Type      | Default | Description                                           |
-| ------------ | --------- | ------- | ----------------------------------------------------- |
-| `enable`     | `boolean` | `true`  | Enable code block collapsing.                         |
-| `max_lines`  | `number`  | `20`    | Maximum number of lines before collapse is triggered. |
-| `show_lines` | `number`  | `20`    | Number of lines to show when collapsed.               |
+| Option         | Type     | Default | Description                                           |
+| -------------- | -------- | ------- | ----------------------------------------------------- |
+| `code_collapse` | `number` | `30`    | Maximum number of lines before collapse is triggered. Set to `0` to disable. |
 
 ![alt text](assets/README-1.webp)
 

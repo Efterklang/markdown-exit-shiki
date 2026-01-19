@@ -10,11 +10,7 @@ export interface ShikiOptions {
     class_prefix?: string;
     css_output_path?: string;
   };
-  code_collapse?: {
-    enable?: boolean;
-    max_lines?: number;
-    show_lines?: number;
-  };
+  code_collapse?: number;
   toolbar_items?: {
     lang?: boolean;
     title?: boolean;
@@ -34,7 +30,6 @@ export interface ParsedConfig {
   collapseConfig: {
     enable: boolean;
     maxLines: number;
-    showLines: number;
   };
   toolbarItems: {
     lang: boolean;

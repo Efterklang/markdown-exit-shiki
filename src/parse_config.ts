@@ -49,11 +49,13 @@ export function parseConfig(renderOptions: ShikiOptions) {
     },
     excludes: options.exclude_languages || ["mermaid"],
     aliases: options.language_aliases || {},
-    collapseConfig: {
-      enable: options.code_collapse?.enable !== false,
-      maxLines: options.code_collapse?.max_lines || 20,
-      showLines: options.code_collapse?.show_lines || 20,
-    },
+    collapseConfig: (() => {
+      const maxLines = options.code_collapse ?? 30;
+      return {
+        enable: maxLines > 0,
+        maxLines: maxLines,
+      };
+    })(),
     styleToClass: {
       enable: options.style_to_class?.enable || false,
       cssGetter: toClass?.getCSS,
