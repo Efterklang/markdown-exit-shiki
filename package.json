@@ -6,10 +6,10 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Efterklang/markdown-it-inline-code.git"
+    "url": "git+https://github.com/Efterklang/markdown-exit-shiki.git"
   },
-  "homepage": "https://github.com/Efterklang/markdown-exit-inline-code#readme",
-  "bugs": "https://github.com/Efterklang/markdown-exit-inline-code/issues",
+  "homepage": "https://github.com/Efterklang/markdown-exit-shiki#readme",
+  "bugs": "https://github.com/Efterklang/markdown-exit-shiki/issues",
   "scripts": {
     "test": "bun test ./test/index.test.ts",
     "build": "vite build",
