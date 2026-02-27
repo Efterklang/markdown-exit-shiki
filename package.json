@@ -41,9 +41,9 @@
     "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
-    "markdown-exit": "^1.0.0-beta.7",
-    "@shikijs/transformers": "^3.23.0",
-    "@shikijs/colorized-brackets": "^3.23.0",
-    "shiki": "^3.23.0"
+    "markdown-exit": "^1.0.0-beta.8",
+    "@shikijs/transformers": "^4.0.0",
+    "@shikijs/colorized-brackets": "^4.0.0",
+    "shiki": "^4.0.0"
   }
 }
