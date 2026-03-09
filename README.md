@@ -5,7 +5,6 @@ A markdown-exit plugin that provides syntax-highlighted code using Shiki, suppor
 ## Install
 
 ```shell
-bun i shiki
 bun i markdown-exit-shiki
 ```
 
