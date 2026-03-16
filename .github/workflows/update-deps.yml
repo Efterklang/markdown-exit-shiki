@@ -34,8 +34,13 @@ jobs:
       - name: Update dependencies
         run: bun update
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "chore(deps): update dependencies"
           title: "chore(deps): update dependencies"
