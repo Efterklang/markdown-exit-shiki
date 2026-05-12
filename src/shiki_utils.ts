@@ -45,12 +45,12 @@ export function createShikiTools(
   const rightParts = ['<div class="right">'];
   if (displayItems.wrapToggle) {
     rightParts.push(
-      '<iconify-icon icon="fa6-solid:arrow-down-wide-short" class="toggle-wrap" title="Toggle Wrap"></iconify-icon>',
+      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="toggle-wrap" title="Toggle Wrap"><path d="m16 16-3 3 3 3"/><path d="M3 12h14.5a1 1 0 0 1 0 7H13"/><path d="M3 19h6"/><path d="M3 5h18"/></svg>',
     );
   }
   if (displayItems.copyButton) {
     rightParts.push(
-      '<div class="copy-notice"></div><iconify-icon icon="fa6-solid:paste" class="copy-button"></iconify-icon>',
+      '<div class="copy-notice"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="copy-button"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M16 4h2a2 2 0 0 1 2 2v4"/><path d="M21 14H11"/><path d="m15 10-4 4 4 4"/></svg>',
     );
   }
   rightParts.push("</div>");
@@ -82,7 +82,7 @@ export function computeCollapseAttributes(
   const shouldCollapse =
     cfg.collapseConfig.enable && codeLines > cfg.collapseConfig.maxLines;
   const expandButton = shouldCollapse
-    ? '<div class="code-expand-btn"><iconify-icon icon="garden:chevron-double-down-fill-16"></iconify-icon></div>'
+    ? '<div class="code-expand-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="expand-icon"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3 3-3-3"/><path d="m15 5-3-3-3 3"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="collapse-icon"><path d="M12 22v-6"/><path d="M12 8V2"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/><path d="m15 19-3-3-3 3"/><path d="m15 5-3 3-3-3"/></svg></div>'
     : "";
   const collapseAttrs = shouldCollapse
     ? ` data-collapsible="true" data-max-lines="${cfg.collapseConfig.maxLines}" data-total-lines="${codeLines}"`

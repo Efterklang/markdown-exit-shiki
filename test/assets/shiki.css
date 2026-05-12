@@ -38,7 +38,7 @@ body {
   --crust: #11111b;
 }
 
-iconify-icon {
+.shiki-tools svg {
   display: inline-block;
 }
 
@@ -102,14 +102,14 @@ figure.shiki {
     display: flex;
     align-items: center;
 
-    > iconify-icon {
+    > svg {
       cursor: pointer;
       transition:
         color 0.3s,
         transform 0.3s ease;
     }
 
-    > iconify-icon:hover {
+    > svg:hover {
       color: var(--blue);
     }
   }
@@ -191,14 +191,22 @@ figure.shiki {
   font-size: 1em;
   cursor: pointer;
 
-  > iconify-icon {
+  svg {
     padding: 6px 0;
     animation: code-expand-pulse 1.2s infinite;
     transition: transform 0.3s ease;
   }
 
-  &.expand-done > iconify-icon {
-    transform: rotate(180deg);
+  .collapse-icon {
+    display: none;
+  }
+
+  &.expand-done .expand-icon {
+    display: none;
+  }
+
+  &.expand-done .collapse-icon {
+    display: block;
   }
 }
 
